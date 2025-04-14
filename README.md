@@ -1,4 +1,7 @@
-Make sure to install dependencies:
+## Confluence documentation to set up this project yourself:
+https://paqtcom.atlassian.net/wiki/spaces/~712020c6233fc5c3364674b508cd9cd7ee442a/pages/5010063383/Nuxt+and+ArkUI+setup
+
+## Make sure to install dependencies:
 
 ```bash
 npm install
