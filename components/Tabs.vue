@@ -1,38 +1,64 @@
 <template>
-  <Root v-model="selectedTab" :orientation="isSmallScreen ? 'vertical' : 'horizontal'">
-    <List :class="[
-      'grid sm:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] h-fit sm:h-10 rounded-md relative',
-      tabsContainerClass,
-      color === 'primary'
-        ? 'bg-[var(--ui-primary-bg)]'
-        : 'bg-[var(--ui-secondary-bg)]',
-    ]">
-      <Trigger :ref="(el) => (triggerRefs[index] = el)" v-for="(tab, index) in tabs" :key="`trigger-${tab.value}`"
-        :value="tab.value" class="flex-1 z-1">
+  <Root
+    v-model="selectedTab"
+    :orientation="isSmallScreen ? 'vertical' : 'horizontal'"
+  >
+    <List
+      :class="[
+        'grid sm:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] h-fit sm:h-10 rounded-md relative',
+        tabsContainerClass,
+        color === 'primary'
+          ? 'bg-[var(--ui-primary-bg)]'
+          : 'bg-[var(--ui-secondary-bg)]',
+      ]"
+    >
+      <Trigger
+        :ref="(el) => (triggerRefs[index] = el)"
+        v-for="(tab, index) in tabs"
+        :key="`trigger-${tab.value}`"
+        :value="tab.value"
+        class="flex-1 z-1 cursor-pointer"
+      >
         <div class="flex items-center justify-center gap-2 w-full h-10">
           <Icon v-if="tab.icon" :name="tab.icon" class="w-5 h-5" />
           <span>{{ tab.label }}</span>
         </div>
       </Trigger>
 
-      <div ref="indicator" v-if="tabIndex !== undefined" :class="[
-        'flex justify-center items-center w-full h-full absolute transition-left transition-top duration-150 ease-in-out p-1',
-        indicatorContainerClass,
-      ]" :style="indicatorStyle">
-        <div v-if="!hasSelectedIndicator" :class="['h-full w-full rounded-md',
-          indicatorClass,
-          color === 'primary'
-            ? 'bg-[var(--ui-primary)]'
-            : 'bg-[var(--ui-secondary)]',]">
-
-        </div>
+      <div
+        ref="indicator"
+        v-if="tabIndex !== undefined"
+        :class="[
+          'flex justify-center items-center w-full h-full absolute transition-left transition-top duration-150 ease-in-out p-1',
+          indicatorContainerClass,
+        ]"
+        :style="indicatorStyle"
+      >
+        <div
+          v-if="!hasSelectedIndicator"
+          :class="[
+            'h-full w-full rounded-md',
+            indicatorClass,
+            color === 'primary'
+              ? 'bg-[var(--ui-primary)]'
+              : 'bg-[var(--ui-secondary)]',
+          ]"
+        ></div>
         <slot v-else name="selectedIndicator"></slot>
       </div>
     </List>
-    <Content v-for="tab in tabs" :key="`content-${tab.value}`" :value="tab.value" :class="['p-4', contentClass]">
+    <Content
+      v-for="tab in tabs"
+      :key="`content-${tab.value}`"
+      :value="tab.value"
+      :class="['p-4', contentClass]"
+    >
       <template #default>
         <slot :name="tab.value">
-          <div v-if="typeof tab.content === 'string'" v-html="tab.content"></div>
+          <div
+            v-if="typeof tab.content === 'string'"
+            v-html="tab.content"
+          ></div>
           <div v-else>
             <component :is="tab.content" />
           </div>
@@ -57,12 +83,12 @@ interface TabsItem {
   content?: string;
   icon?: string;
   to?:
-  | string
-  | {
-    name: string;
-    params?: Record<string, any>;
-    query?: Record<string, any>;
-  };
+    | string
+    | {
+        name: string;
+        params?: Record<string, any>;
+        query?: Record<string, any>;
+      };
 }
 
 const props = withDefaults(
@@ -147,19 +173,26 @@ onMounted(() => {
 });
 
 const setTriggerSize = (): void => {
-  const firstTrigger = triggerRefs.value.find((triggerRef) => triggerRef !== null);
+  const firstTrigger = triggerRefs.value.find(
+    (triggerRef) => triggerRef !== null,
+  );
 
   let firstTriggerHtmlElement: HTMLElement | null = null;
 
   if (firstTrigger instanceof HTMLElement) {
     firstTriggerHtmlElement = firstTrigger;
   } else if (firstTrigger && "$el" in firstTrigger) {
-    firstTriggerHtmlElement = (firstTrigger as ComponentPublicInstance).$el as HTMLElement;
+    firstTriggerHtmlElement = (firstTrigger as ComponentPublicInstance)
+      .$el as HTMLElement;
   }
 
   if (firstTriggerHtmlElement) {
-    const height = parseFloat(window.getComputedStyle(firstTriggerHtmlElement).height);
-    const width = parseFloat(window.getComputedStyle(firstTriggerHtmlElement).width);
+    const height = parseFloat(
+      window.getComputedStyle(firstTriggerHtmlElement).height,
+    );
+    const width = parseFloat(
+      window.getComputedStyle(firstTriggerHtmlElement).width,
+    );
     triggerHeight.value = height;
     triggerWidth.value = width;
   }

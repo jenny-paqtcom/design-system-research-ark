@@ -22,20 +22,41 @@
       <span class="font-semibold mb-4">{{ "Tabs with custom content:" }}</span>
       <span class="font-semibold text-sm mb-2">{{ "Default:" }}</span>
       <Tabs :tabs="filteredExpressionsTabs3">
-        <template v-for="(tab, index) in filteredexpressionsTabs" :key="tab.value" #[tab.value]>
+        <template
+          v-for="(tab, index) in filteredexpressionsTabs"
+          :key="tab.value"
+          #[tab.value]
+        >
           <span>{{ expressions[index].description }}</span>
-          <img class="w-40 h-auto" :src="expressions[index].imageUrl" :alt="expressions[index].value" />
+          <img
+            class="w-40 h-auto"
+            :src="expressions[index].imageUrl"
+            :alt="expressions[index].value"
+          />
         </template>
       </Tabs>
       <br />
       <span class="font-semibold text-sm mb-2">{{
         "With custom styling"
       }}</span>
-      <Tabs :tabs="filteredexpressionsTabs2" tab-index="1" tabs-container-class="bg-rose-300 rounded-none"
-        content-class="bg-rose-200" indicatorContainerClass="!p-0 rounded-none">
-        <template v-for="(tab, index) in filteredexpressionsTabs" :key="tab.value" #[tab.value]>
+      <Tabs
+        :tabs="filteredexpressionsTabs2"
+        tab-index="1"
+        tabs-container-class="bg-rose-300 rounded-none"
+        content-class="bg-rose-200"
+        indicatorContainerClass="!p-0 rounded-none"
+      >
+        <template
+          v-for="(tab, index) in filteredexpressionsTabs"
+          :key="tab.value"
+          #[tab.value]
+        >
           <span>{{ expressions[index].description }}</span>
-          <img class="w-40 h-auto" :src="expressions[index].imageUrl" :alt="expressions[index].value" />
+          <img
+            class="w-40 h-auto"
+            :src="expressions[index].imageUrl"
+            :alt="expressions[index].value"
+          />
         </template>
 
         <template #selectedIndicator>
@@ -46,11 +67,23 @@
       <span class="font-semibold text-sm mb-2">{{
         "With custom indicator I:"
       }}</span>
-      <Tabs :tabs="filteredexpressionsTabs2" tab-index="1" tabs-container-class="bg-sky-300 rounded-none"
-        content-class="bg-sky-200">
-        <template v-for="(tab, index) in filteredexpressionsTabs" :key="tab.value" #[tab.value]>
+      <Tabs
+        :tabs="filteredexpressionsTabs2"
+        tab-index="1"
+        tabs-container-class="bg-sky-300 rounded-none"
+        content-class="bg-sky-200"
+      >
+        <template
+          v-for="(tab, index) in filteredexpressionsTabs"
+          :key="tab.value"
+          #[tab.value]
+        >
           <span>{{ expressions[index].description }}</span>
-          <img class="w-40 h-auto" :src="expressions[index].imageUrl" :alt="expressions[index].value" />
+          <img
+            class="w-40 h-auto"
+            :src="expressions[index].imageUrl"
+            :alt="expressions[index].value"
+          />
         </template>
 
         <template #selectedIndicator>
@@ -61,11 +94,23 @@
       <span class="font-semibold text-sm mb-2">{{
         "With custom indicator II:"
       }}</span>
-      <Tabs :tabs="filteredexpressionsTabs2" tab-index="1" tabs-container-class="bg-indigo-300 rounded-none"
-        content-class="bg-indigo-200">
-        <template v-for="(tab, index) in filteredexpressionsTabs" :key="tab.value" #[tab.value]>
+      <Tabs
+        :tabs="filteredexpressionsTabs2"
+        tab-index="1"
+        tabs-container-class="bg-indigo-300 rounded-none"
+        content-class="bg-indigo-200"
+      >
+        <template
+          v-for="(tab, index) in filteredexpressionsTabs"
+          :key="tab.value"
+          #[tab.value]
+        >
           <span>{{ expressions[index].description }}</span>
-          <img class="w-40 h-auto" :src="expressions[index].imageUrl" :alt="expressions[index].value" />
+          <img
+            class="w-40 h-auto"
+            :src="expressions[index].imageUrl"
+            :alt="expressions[index].value"
+          />
         </template>
 
         <template #selectedIndicator>
@@ -83,16 +128,28 @@
       }}</span>
       <Tabs v-model="selectedTab" :tabs="filteredexpressionsTabsWithContent" />
       <div class="flex gap-1">
-        <button class="bg-indigo-300 flex-1 rounded-md p-2" @click="() => changeTab(0)">
+        <button
+          class="bg-indigo-300 flex-1 rounded-md p-2 cursor-pointer"
+          @click="() => changeTab(0)"
+        >
           Click to set to tab 1
         </button>
-        <button class="bg-indigo-300 flex-1 rounded-md p-2" @click="() => changeTab(1)">
+        <button
+          class="bg-indigo-300 flex-1 rounded-md p-2 cursor-pointer"
+          @click="() => changeTab(1)"
+        >
           Click to set to tab 2
         </button>
-        <button class="bg-indigo-300 flex-1 rounded-md p-2" @click="() => changeTab(2)">
+        <button
+          class="bg-indigo-300 flex-1 rounded-md p-2 cursor-pointer"
+          @click="() => changeTab(2)"
+        >
           Click to set to tab 3
         </button>
-        <button class="bg-indigo-300 flex-1 rounded-md p-2" @click="() => changeTab(3)">
+        <button
+          class="bg-indigo-300 flex-1 rounded-md p-2 cursor-pointer"
+          @click="() => changeTab(3)"
+        >
           Click to set to tab 4
         </button>
       </div>
