@@ -147,19 +147,19 @@ onMounted(() => {
 });
 
 const setTriggerSize = (): void => {
-  const first = triggerRefs.value.find((el) => el !== null);
+  const firstTrigger = triggerRefs.value.find((triggerRef) => triggerRef !== null);
 
-  let domEl: HTMLElement | null = null;
+  let firstTriggerHtmlElement: HTMLElement | null = null;
 
-  if (first instanceof HTMLElement) {
-    domEl = first;
-  } else if (first && "$el" in first) {
-    domEl = (first as ComponentPublicInstance).$el as HTMLElement;
+  if (firstTrigger instanceof HTMLElement) {
+    firstTriggerHtmlElement = firstTrigger;
+  } else if (firstTrigger && "$el" in firstTrigger) {
+    firstTriggerHtmlElement = (firstTrigger as ComponentPublicInstance).$el as HTMLElement;
   }
 
-  if (domEl) {
-    const height = parseFloat(window.getComputedStyle(domEl).height);
-    const width = parseFloat(window.getComputedStyle(domEl).width);
+  if (firstTriggerHtmlElement) {
+    const height = parseFloat(window.getComputedStyle(firstTriggerHtmlElement).height);
+    const width = parseFloat(window.getComputedStyle(firstTriggerHtmlElement).width);
     triggerHeight.value = height;
     triggerWidth.value = width;
   }
