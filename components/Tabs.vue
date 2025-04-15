@@ -92,18 +92,18 @@ const hasSelectedIndicator = !!slots.selectedIndicator;
 
 const { Root, List, Trigger, Content } = Tabs;
 
+type RouteObject = {
+  name: string;
+  params?: Record<string, any>;
+  query?: Record<string, any>;
+};
+
 interface TabsItem {
   label: string;
   value: string;
   content?: string;
   icon?: string;
-  to?:
-    | string
-    | {
-        name: string;
-        params?: Record<string, any>;
-        query?: Record<string, any>;
-      };
+  to?: string | RouteObject;
 }
 
 const props = withDefaults(
