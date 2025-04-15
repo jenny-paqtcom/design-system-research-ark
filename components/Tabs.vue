@@ -5,11 +5,8 @@
   >
     <List
       :class="[
-        'grid sm:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] h-fit sm:h-10 rounded-md relative',
+        'grid sm:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] h-fit sm:h-10 rounded-md relative bg-[var(--ui-tabs-bg)]',
         tabsContainerClass,
-        color === 'primary'
-          ? 'bg-[var(--ui-primary-bg)]'
-          : 'bg-[var(--ui-secondary-bg)]',
       ]"
     >
       <Trigger
@@ -19,9 +16,27 @@
         :value="tab.value"
         class="flex-1 z-1 cursor-pointer"
       >
-        <div class="flex items-center justify-center gap-2 w-full h-10">
-          <Icon v-if="tab.icon" :name="tab.icon" class="w-5 h-5" />
-          <span>{{ tab.label }}</span>
+        <div
+          class="flex items-center justify-center gap-2 w-full h-10 group transition-colors duration-150"
+        >
+          <Icon
+            v-if="tab.icon"
+            :name="tab.icon"
+            :class="[
+              'w-5 h-5 ',
+              selectedTab === tab.value
+                ? 'text-black'
+                : 'text-gray-400 group-hover:text-gray-700',
+            ]"
+          />
+          <span
+            :class="[
+              selectedTab === tab.value
+                ? 'text-black'
+                : 'text-gray-400 group-hover:text-gray-700',
+            ]"
+            >{{ tab.label }}</span
+          >
         </div>
       </Trigger>
 
@@ -111,7 +126,6 @@ const props = withDefaults(
 const emit = defineEmits(["update:modelValue"]);
 
 const screenWidth = ref(window.innerWidth);
-
 const isSmallScreen = computed(() => screenWidth.value <= 640);
 
 const handleResize = () => {
@@ -126,7 +140,6 @@ const tabs = props.tabs || [
 ];
 
 const selectedTab = ref<string>(tabs[Number(props.tabIndex)]?.value);
-
 const triggerRefs = ref<(Element | ComponentPublicInstance | null)[]>([]);
 const triggerHeight = ref<number>(0);
 const triggerWidth = ref<number>(0);

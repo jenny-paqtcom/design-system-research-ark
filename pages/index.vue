@@ -42,7 +42,7 @@
       <Tabs
         :tabs="filteredexpressionsTabs2"
         tab-index="1"
-        tabs-container-class="bg-rose-300 rounded-none"
+        tabs-container-class="rounded-none"
         content-class="bg-rose-200"
         indicatorContainerClass="!p-0 rounded-none"
       >
@@ -70,7 +70,7 @@
       <Tabs
         :tabs="filteredexpressionsTabs2"
         tab-index="1"
-        tabs-container-class="bg-sky-300 rounded-none"
+        tabs-container-class="rounded-none"
         content-class="bg-sky-200"
       >
         <template
@@ -97,7 +97,7 @@
       <Tabs
         :tabs="filteredexpressionsTabs2"
         tab-index="1"
-        tabs-container-class="bg-indigo-300 rounded-none"
+        tabs-container-class="rounded-none"
         content-class="bg-indigo-200"
       >
         <template

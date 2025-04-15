@@ -2,9 +2,8 @@
 
 :root {
   --ui-primary: var(--color-violet-500);
-  --ui-primary-bg: var(--color-violet-200);
+  --ui-tabs-bg: var(--color-gray-200);
   --ui-secondary: var(--color-teal-600);
-  --ui-secondary-bg: var(--color-teal-200);
 }
 
 html {
