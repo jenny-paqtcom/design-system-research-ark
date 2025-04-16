@@ -126,7 +126,6 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits(["update:modelValue"]);
 let resizeTimeout: ReturnType<typeof setTimeout>;
 
 const screenWidth = ref(window.innerWidth);
