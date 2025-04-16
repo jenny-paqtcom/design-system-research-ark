@@ -17,7 +17,7 @@
         class="flex-1 z-1 cursor-pointer"
       >
         <div
-          class="flex items-center justify-center gap-2 w-full h-10 group transition-colors duration-150"
+          class="flex items-center justify-center gap-2 w-full h-10 group transition-colors duration-75 ease-in-out"
         >
           <Icon
             v-if="tab.icon"
@@ -44,7 +44,10 @@
         ref="indicator"
         v-if="tabIndex !== undefined"
         :class="[
-          'flex justify-center items-center w-full h-full absolute transition-left transition-top duration-150 ease-in-out p-1',
+          'flex justify-center items-center w-full h-full absolute p-1',
+          isTransitionEnabled
+            ? 'transition-left transition-top duration-150 ease-in-out'
+            : '',
           indicatorContainerClass,
         ]"
         :style="indicatorStyle"
@@ -89,6 +92,7 @@ import { ref, computed, useSlots } from "vue";
 
 const slots = useSlots();
 const hasSelectedIndicator = !!slots.selectedIndicator;
+const ANIMATION_DURATION = 150; // MS
 
 const { Root, List, Trigger, Content } = Tabs;
 
@@ -124,13 +128,21 @@ const props = withDefaults(
 );
 
 const emit = defineEmits(["update:modelValue"]);
+let resizeTimeout: ReturnType<typeof setTimeout>;
 
 const screenWidth = ref(window.innerWidth);
 const isSmallScreen = computed(() => screenWidth.value <= 640);
 
+const isTransitionEnabled = ref(false);
+
 const handleResize = () => {
   screenWidth.value = window.innerWidth;
   setTriggerSize();
+
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    isTransitionEnabled.value = true;
+  }, ANIMATION_DURATION);
 };
 
 const tabs = props.tabs || [
@@ -181,8 +193,11 @@ watch(
 
 onMounted(() => {
   window.addEventListener("resize", handleResize);
-
   setTriggerSize();
+
+  setTimeout(() => {
+    isTransitionEnabled.value = true;
+  }, ANIMATION_DURATION);
 });
 
 const setTriggerSize = (): void => {
