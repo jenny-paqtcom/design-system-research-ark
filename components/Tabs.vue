@@ -12,7 +12,7 @@
       <Trigger
         :ref="(el) => (tabRefs[index] = el as HTMLElement)"
         v-for="(tab, index) in tabs"
-        :key="`trigger-${tab.value}`"
+        :key="`tab-${tab.value}`"
         :value="tab.value"
         class="flex-1 z-1 cursor-pointer"
       >
@@ -135,7 +135,7 @@ const isTransitionEnabled = ref(false);
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth;
-  setTriggerSize();
+  settabSize();
 
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
@@ -151,8 +151,8 @@ const tabs = props.tabs || [
 
 const selectedTab = ref<string>(tabs[Number(props.tabIndex)]?.value);
 const tabRefs = ref<(HTMLElement | null)[]>([]);
-const triggerHeight = ref<number>(0);
-const triggerWidth = ref<number>(0);
+const tabHeight = ref<number>(0);
+const tabWidth = ref<number>(0);
 
 const indicator = useTemplateRef("indicator");
 
@@ -164,8 +164,8 @@ const indicatorStyle = computed(() => {
     return {
       top: `${isSmallScreen.value ? tabIndex * tabPercentage : 0}%`,
       left: `${isSmallScreen.value ? 0 : tabIndex * tabPercentage}%`,
-      width: `${triggerWidth.value}px`,
-      height: `${triggerHeight.value}px`,
+      width: `${tabWidth.value}px`,
+      height: `${tabHeight.value}px`,
     };
   }
   return null;
@@ -191,34 +191,34 @@ watch(
 
 onMounted(() => {
   window.addEventListener("resize", handleResize);
-  setTriggerSize();
+  settabSize();
 
   setTimeout(() => {
     isTransitionEnabled.value = true;
   }, ANIMATION_DURATION);
 });
 
-const setTriggerSize = (): void => {
-  const firstTrigger = tabRefs.value.find((triggerRef) => triggerRef !== null);
+const settabSize = (): void => {
+  const firsttab = tabRefs.value.find((tabRef) => tabRef !== null);
 
-  let firstTriggerHtmlElement: HTMLElement | null = null;
+  let firsttabHtmlElement: HTMLElement | null = null;
 
-  if (firstTrigger instanceof HTMLElement) {
-    firstTriggerHtmlElement = firstTrigger;
-  } else if (firstTrigger && "$el" in firstTrigger) {
-    firstTriggerHtmlElement = (firstTrigger as ComponentPublicInstance)
+  if (firsttab instanceof HTMLElement) {
+    firsttabHtmlElement = firsttab;
+  } else if (firsttab && "$el" in firsttab) {
+    firsttabHtmlElement = (firsttab as ComponentPublicInstance)
       .$el as HTMLElement;
   }
 
-  if (firstTriggerHtmlElement) {
+  if (firsttabHtmlElement) {
     const height = parseFloat(
-      window.getComputedStyle(firstTriggerHtmlElement).height,
+      window.getComputedStyle(firsttabHtmlElement).height,
     );
     const width = parseFloat(
-      window.getComputedStyle(firstTriggerHtmlElement).width,
+      window.getComputedStyle(firsttabHtmlElement).width,
     );
-    triggerHeight.value = height;
-    triggerWidth.value = width;
+    tabHeight.value = height;
+    tabWidth.value = width;
   }
 };
 
