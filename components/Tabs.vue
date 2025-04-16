@@ -88,7 +88,6 @@
 
 <script setup lang="ts">
 import { Tabs } from "@ark-ui/vue/tabs";
-import { ref, computed, useSlots } from "vue";
 
 const slots = useSlots();
 const hasSelectedIndicator = !!slots.selectedIndicator;
