@@ -10,7 +10,7 @@
       ]"
     >
       <Trigger
-        :ref="(el) => (tabRefs[index] = el)"
+        :ref="(el) => (tabRefs[index] = el as HTMLElement)"
         v-for="(tab, index) in tabs"
         :key="`trigger-${tab.value}`"
         :value="tab.value"
@@ -150,7 +150,7 @@ const tabs = props.tabs || [
 ];
 
 const selectedTab = ref<string>(tabs[Number(props.tabIndex)]?.value);
-const tabRefs = ref<(Element | ComponentPublicInstance | null)[]>([]);
+const tabRefs = ref<(HTMLElement | null)[]>([]);
 const triggerHeight = ref<number>(0);
 const triggerWidth = ref<number>(0);
 
