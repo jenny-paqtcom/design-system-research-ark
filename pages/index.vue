@@ -1,24 +1,24 @@
 <template>
-  <div class="flex flex-col p-4">
-    <Card>
+  <div class="flex flex-col p-4 gap-2">
+    <Card class="gap-2">
       <span class="font-semibold">{{
         "ArkUI's tabs component without any styling or additional functionalities:"
       }}</span>
       <BasicArkUITabs :tabs="filteredexpressionsTabsWithContent" />
     </Card>
-    <br />
-    <Card>
+
+    <Card class="gap-2">
       <span class="font-semibold mb-4">{{
         "Tabs with static (string) content and no custom styling:"
       }}</span>
       <span class="font-semibold text-sm mb-2">{{ "Primary" }}</span>
       <Tabs :tabs="filteredexpressionsTabsWithContent" />
-      <br />
+
       <span class="font-semibold text-sm mb-2">{{ "Secondary" }}</span>
       <Tabs :tabs="filteredexpressionsTabsWithContent" color="secondary" />
     </Card>
-    <br />
-    <Card>
+
+    <Card class="gap-2">
       <span class="font-semibold mb-4">{{ "Tabs with custom content:" }}</span>
       <span class="font-semibold text-sm mb-2">{{ "Default:" }}</span>
       <Tabs :tabs="filteredExpressionsTabs3">
@@ -35,7 +35,7 @@
           />
         </template>
       </Tabs>
-      <br />
+
       <span class="font-semibold text-sm mb-2">{{
         "With custom styling"
       }}</span>
@@ -63,7 +63,7 @@
           <div class="bg-rose-400 h-full w-full"></div>
         </template>
       </Tabs>
-      <br />
+
       <span class="font-semibold text-sm mb-2">{{
         "With custom indicator I:"
       }}</span>
@@ -90,7 +90,7 @@
           <div class="bg-sky-500 h-1 bottom-0 absolute w-full"></div>
         </template>
       </Tabs>
-      <br />
+
       <span class="font-semibold text-sm mb-2">{{
         "With custom indicator II:"
       }}</span>
@@ -121,8 +121,8 @@
         </template>
       </Tabs>
     </Card>
-    <br />
-    <Card>
+
+    <Card class="gap-2">
       <span class="font-semibold mb-4">{{
         "Programaticlaly select tabs:"
       }}</span>
